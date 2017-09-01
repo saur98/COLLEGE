@@ -1,0 +1,156 @@
+#include<stdio.h>
+
+struct student
+{
+    int rollno,m1,m2,m3;
+    char name[50];
+};
+void search1(struct student[],int,int);
+struct student search2(struct student[],int,int);
+void sort(struct student[],int);
+struct student* search3(struct student[],int,int);
+
+
+void main()
+{
+    struct student s[50],c2,*p;
+    int n,i,temp,c,x;
+    printf("Enter the number of Student\n");
+    scanf("%d",&n);
+    for(i=0;i<n;i++)
+    {
+        printf("Enter the Roll no\n");
+        scanf("%d",&s[i].rollno);
+        printf("Enter the name of Student\n");
+        scanf("%s",s[i].name);
+        printf("Enter the marks M1,M2,M3\n");
+        scanf("%d%d%d",&s[i].m1,&s[i].m2,&s[i].m3);
+    }
+     read:
+    printf("Enter your choice\nPress 1 for info in function\nPress 2 for info in main\nPress 3 for by pointer\nPress 4 for sorting\nPress 5 for Exit\n");
+          scanf("%d",&c);
+
+          switch(c)
+          {
+          case 1:
+            printf("Enter the Value of roll no\n");
+            scanf("%d",&x);
+            search1(s,n,x);
+            goto read;
+            break;
+
+          case 2:
+            printf("Enter the Value of roll no\n");
+            scanf("%d",&x);
+            c2=search2(s,n,x);
+            if(temp==-1)
+            {
+                printf("Roll no doesn't Exist\n");
+            }
+            else
+            {
+            printf("%d\n",c2.rollno);
+            printf("%s\n",c2.name);
+            printf("%d\n%d\n%d\n",c2.m1,c2.m2,c2.m3);
+            }
+            goto read;
+            break;
+
+          case 3:
+
+              printf("Enter the rollno\n");
+              scanf("%d",&x);
+
+              p=search3(s,n,x);
+              printf("%d\n",p->rollno);
+            printf("%s\n",p->name);
+            printf("%d\n%d\n%d\n",p->m1,p->m2,p->m3);
+
+
+            goto read;
+            break;
+
+          case 4:
+
+              sort(s,n);
+              goto read;
+              break;
+
+          case 5:
+            break;
+
+          }
+}
+
+void search1(struct student s[],int n,int x)
+{
+    int i;
+
+    for(i=0;i<n;i++)
+    {
+        if(s[i].rollno==x)
+        {
+            printf("%d\n",s[i].rollno);
+            printf("%s\n",s[i].name);
+            printf("%d\n%d\n%d\n",s[i].m1,s[i].m2,s[i].m3);
+        }
+    }
+}
+
+struct student search2(struct student s[],int n,int x)
+{
+    int i;
+    struct student temp;
+    for(i=0;i<n;i++)
+    {
+        if(s[i].rollno==x)
+        {
+            temp=s[i];
+        }
+    }
+    return (temp);
+}
+
+void sort(struct student s[],int n)
+{
+
+    struct student c;
+    int i,j;
+
+     for(i=0;i<n;i++)
+     {
+         for(j=i;j<n;j++)
+         {
+             if(s[i].rollno>s[j].rollno)
+             {
+                 c=s[j];
+                 s[j]=s[i];
+                 s[i]=c;
+             }
+         }
+     }
+
+    for(i=0;i<n;i++)
+    {
+        printf("%d\n",s[i].rollno);
+        printf("%s\n",s[i].name);
+    }
+}
+
+struct student* search3(struct student s[], int n, int x)
+{
+
+     int i;
+    struct student *temp;
+    for(i=0;i<n;i++)
+    {
+        if(s[i].rollno==x)
+        {
+            *temp=s[i];
+        }
+    }
+    return (temp);
+}
+
+
+

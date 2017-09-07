@@ -23,29 +23,36 @@ void insert(int x)
 int delete1()
 {
     int x;
-    if(isempty())
-        printf("queue is empty\n");
-    else
+    if(cq.f==cq.r)
+    {
+
+        x=cq.que[cq.f];
+        cq.f=-1;cq.r=-1;
+    }
+        else
         {
+
         x=cq.que[cq.f];
         cq.f=(cq.f+1)%size;
-        if(cq.f==cq.r)
-            cq.f=cq.r=-1;
-        return x;
+
         }
+        return x;
 }
 
 void display()
 {
-    int i;
+
+    int i=cq.f;
     if(isempty())
         printf("queue is empty\n");
     else
     {
+
         printf("--QUEUE--\n");
-        for(i=cq.f;i!=cq.r;i=(i+1)%size)
+        while(i!=cq.r)
         {
         printf("%d\n",cq.que[i]);
+        i=(i+1)%size;
         }
         printf("%d\n",cq.que[cq.r]);
 
@@ -83,8 +90,11 @@ void main()
         insert(x);
         break;
 
-        case 2:x=delete1();
-                printf("Deleted value is %d\n",x);
+        case 2: if(isempty())
+                printf("queue is empty\n");
+                else{
+                x=delete1();
+                printf("Deleted value is %d\n",x);}
                 break;
 
         case 3:display();

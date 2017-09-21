@@ -27,6 +27,11 @@ prev->next=newnode;
 }
 prev=newnode;
 size++;
+    if(size==5)
+{
+    printf("QUEUE IS FULL\n");
+    break;
+}
 printf("Enter The Number(-999 to stop)\n");
 scanf("%d",&n);
 }

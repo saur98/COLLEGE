@@ -1,0 +1,27 @@
+#include<stdio.h>
+#include<ctype.h>
+
+void main()
+{
+ char s[100];
+ int dig,ans,i,a[10],t=0,answer;
+ scanf("%s",s);
+ for(i=0;s[i]!='\0';i++)
+ {
+     if(isdigit(s[i]))
+     {
+         dig=(int)s[i]-48;
+         ans=ans*10+dig;
+         printf("%d\n",ans);
+     }
+     if(s[i]==' ')
+     {
+         a[t]=ans;
+         t++;
+         ans=0;
+     }
+ }
+
+answer=a[0]+a[1];
+printf("%d",answer);
+}
